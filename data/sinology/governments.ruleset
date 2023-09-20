@@ -1,0 +1,227 @@
+; This is the sinology ruleset. See README.sinology
+; for a detailed description.
+
+; Modifying this file:
+; You should not modify this file except to make bugfixes or
+; for other "maintenance".  If you want to make custom changes
+; you should create a new datadir subdirectory and copy this file
+; into that directory, and then modify that copy.  Then use the
+; command "rulesetdir <mysubdir>" in the server to have freeciv
+; use your new customized file.
+
+; Note that the freeciv AI may not cope well with anything more
+; than minor changes.
+
+[datafile]
+description="Sinology governments data for Freeciv"
+options="+Freeciv-3.0-ruleset"
+format_version=10
+
+[governments]
+during_revolution="Anarchy"
+
+; /* <-- avoid gettext warnings
+;
+; Below: The individual government types, one per section.
+;
+; The actual tag used (the * in [government_*]) does not matter, except
+; it must be unique within this file, and it may be used in debug
+; output when reading this file.
+;
+; For the "official" rulesets, the order of these sections should not
+; be changed because that would break backward compatibility with
+; savegames.  (In particular, if Fundamentalism is added to default
+; ruleset, should be added at end.)
+;
+; Notes on fields:
+;
+; name         = translatable name as seen by user
+; rule_name    = (optional) internal name for savegames, rulesets etc; if
+;                not present, "name" is used for this purpose too. Since
+;                the name used in savegames must not change, if you want
+;                to rename an item after a ruleset has been released, you
+;                should set "rule_name" to the original value of "name".
+; reqs         = requirements for this government (see README.effects)
+; graphic      = tag specifing preferred graphic
+; graphic_alt  = alternate graphics tag if preferred is not found;
+;                should be a standard tag if preferred is not;
+;                otherwise may be "-"
+; ai_better    = AI will not consider this government for use if the
+;                government listed here is available
+; ruler_male_title   = The default male ruler title for the government type.
+;                      It's a format string where name of the ruler is marked
+;                      by '%s'.
+;                      Individual nations may override this by their
+;                      own title.
+; ruler_female_title = The default female ruler title for the government type.
+;                      See above ruler_male_title.
+; helptext     = optional help text string; should escape all raw newlines
+;                so that xgettext parsing works
+;
+; */ <-- avoid gettext warnings
+
+;------------------------------------------------------------------------
+[government_anarchy]
+
+name        = _("Anarchy")
+; No reqs
+graphic     = "gov.anarchy"
+graphic_alt = "-"
+
+ruler_male_title = _("Warlord %s")
+ruler_female_title = _("Warlady %s")
+
+helptext = _("\
+Anarchy is simply the absence of any recognizable government.\
+ Citizens are disorganized and unproductive, and will spend all\
+ income as quickly as possible, rather than paying taxes or\
+ conducting research.\
+"), _("\
+Anarchy offers slightly less corruption than Qin-Han System,\
+ but slightly more unhappiness.\
+"), _("\
+Under Anarchy, technology cannot be lost due to lack of upkeep.\
+")
+
+;------------------------------------------------------------------------
+[government_yao-shun]
+
+name        = _("Yao-Shun System")
+; No reqs
+graphic     = "gov.yao-shun"
+graphic_alt = "-"
+ai_better   = "Shang-Zhou System"
+
+ruler_male_title = _("Chief %s")
+ruler_female_title = _("?female:Chief %s")
+
+helptext = _("\
+Under Yao-Shun System, you are the chief of your people.\
+"), _("\
+Your control over your citizens is maintained largely by spiritual counsel.\
+")
+
+;------------------------------------------------------------------------
+[government_shang-zhou]
+
+name        = _("Shang-Zhou System")
+reqs = { "type", "name", "range"
+         "tech", "Monarchy", "Player"
+       }
+graphic     = "gov.shang-zhou"
+graphic_alt = "-"
+ai_better   = "Soviet System"
+
+ruler_male_title = _("King %s")
+ruler_female_title = _("Queen %s")
+
+helptext = _("\
+Under Shang-Zhou System, a king would allocate an area of land to a noble,\
+ establishing him as the de facto ruler of that region and allowing his title
+ and fief to be legitimately inherited by his descendants.\
+"), _("\
+Shang-Zhou System suffers the same small amount of corruption that\
+ the Qin-Han System does.\
+")
+
+;------------------------------------------------------------------------
+[government_qin-han]
+
+name        = _("Qin-Han System")
+reqs = { "type", "name", "range"
+         "tech", "The Legalism", "Player"
+       }
+graphic     = "gov.qin-han"
+graphic_alt = "-"
+
+ruler_male_title = _("Emperor %s")
+ruler_female_title = _("?female:Emperor %s")
+
+helptext = _("\
+Under a Qin-Han System government, all land belong to the Emperor,\
+ and all men are servants of the Emperor.\
+ Citizens under the Qin-Han System become unhappy\
+ easily, but the self-sufficiency of your citizens allows high levels\
+ of trade.\
+")
+
+;------------------------------------------------------------------------
+[government_soviet]
+
+name        = _("Soviet System")
+reqs = { "type", "name", "range"
+         "tech", "Communism", "Player"
+       }
+graphic     = "gov.soviet"
+graphic_alt = "-"
+
+ruler_male_title = _("General Secretary %s")
+ruler_female_title = _("?female:General Secretary %s")
+
+helptext = _("\
+A Soviet System government is based on the ideal that all people are\
+ equal.  All goods are owned by the state, rather than by private\
+ citizens.  Soviet System gives a balance between military and commercial\
+ styles of government.\
+"), _("\
+Under Soviet System, corruption does not vary by distance from\
+ the capital; all cities (including the capital) have a modest amount\
+ of corruption.\
+")
+
+;------------------------------------------------------------------------
+[government_characteristic]
+
+name        = _("Characteristic System")
+reqs = { "type", "name", "range"
+         "tech", "Democracy", "Player"
+       }
+graphic     = "gov.characteristic"
+graphic_alt = "-"
+
+ruler_male_title = _("Chairman %s")
+ruler_female_title = _("?female:Chairwoman %s")
+
+helptext = _("\
+Characteristic System offers the highest possible level of trade, but also\
+ offers the most potential for unhappiness.  And citizens become very upset during\
+ wars.\
+")
+
+; /* <-- avoid gettext warnings
+;
+; Multipliers (aka policies)
+;
+; name                    = translatable name as seen by user
+; rule_name               = (optional) internal name for savegames, rulesets
+;                           etc; if not present, "name" is used for this
+;                           purpose too. Since the name used in savegames must
+;                           not change, if you want to rename an item after a
+;                           ruleset has been released, you should set
+;                           "rule_name" to the original value of "name".
+; default                 = default value (as presented in UI)
+; start                   = minimum value (as presented in UI)
+; stop                    = maximum value (as presented in UI)
+; step                    = minimum increase/decrease (as presented in UI)
+; offset                  = offset/factor control how UI values are turned
+; factor                  = into effect values for use in effects.ruleset.
+;                           effect_value = (ui_value + offset) * (factor/100)
+;                           Optional; by default offset=0, factor=100, so
+;                           that UI values are used as-is.
+; helptext                = optional help text string; should escape all raw
+;                           newlines so that xgettext parsing works
+;
+; */ <-- avoid gettext warnings
+
+[multiplier_personal_freedom]
+name      = _("Personal Freedom")
+start     = 0
+stop      = 5
+step      = 1
+default   = 0
+; /* xgettext:no-c-format */
+helptext  = _("\
+Each step of personal freedom you allow your citizens yields a 10% \
+increase in science output, but makes an additional citizen unhappy \
+for every aggressively deployed military unit.\
+")

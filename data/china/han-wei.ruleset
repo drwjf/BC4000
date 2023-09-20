@@ -1,0 +1,60 @@
+[nation_wei]
+
+translation_domain="freeciv"
+
+name=_("Wei")
+plural=_("?plural:Wei")
+groups="Ancient", "Asian"
+legend=_("Wei is one of kingdom in the three kindoms.")
+
+leaders = {
+ "name",                "sex"
+ "Cao Pi",              "Male"
+}
+
+ruler_titles = {
+ "government",      "male_title",      "female_title"
+ "Monarchy",        _("Emperor %s"),   _("Empress Dowager %s")
+ "Communism",       _("Chairman %s"),  _("Chairwoman %s")
+}
+
+flag="wales"
+flag_alt = "-"
+style = "Asian"
+
+init_techs=""
+init_buildings=""
+init_units=""
+civilwar_nations=
+; Technically Taiwan (ROC) is the site of government-in-exile of China proper
+ "taiwanese",
+; Nations part of modern PRC
+ "manchu", "miao", "tibetan", "uyghur", "zhuang", "cantonese"
+
+cities =
+ "Xuzhou",
+ "Hongnong",
+ "Nanyang",
+ "Longzhong",
+ "Xiangyang",
+ "Caoge",
+ "Shangdang",
+ "Changsan",
+ "Yanmen",
+ "Yuyang",
+ "Bohai",
+ "Hejian",
+ "Jinan",
+ "Pinyuan",
+ "Chenliu",
+ "Yinchuan",
+ "Xinye",
+ "Runan",
+ "Shouchun",
+ "Langya",
+ "Guangling",
+ "Dunhuang",
+ "Jiuquan",
+ "Zhangye",
+ "Longxi",
+ "Tiansui"

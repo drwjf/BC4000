@@ -1,0 +1,6 @@
+*include "china/han-wei.ruleset"
+*include "china/han-shu.ruleset"
+*include "china/han-wu.ruleset"
+*include "china/ming.ruleset"
+*include "china/minguo.ruleset"
+*include "china/qing.ruleset"
